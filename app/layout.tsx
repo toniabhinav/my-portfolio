@@ -19,6 +19,10 @@ export const metadata = {
   title: "Abhinav Kumar | Portfolio",
   description: "Aspiring Data Analyst Portfolio",
 };
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 
 export default function RootLayout({

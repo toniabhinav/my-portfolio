@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaPython } from "react-icons/fa";
+import { FaLinkedin, FaEnvelope } from "react-icons/fa";
+
 import { SiPandas, SiMysql } from "react-icons/si";
 
 import { TbFileSpreadsheet } from "react-icons/tb";
@@ -195,6 +197,10 @@ export default function Page() {
           </div>
         </motion.section>
 
+
+
+
+
         {/* CONTACT */}
         <motion.section
           id="contact"
@@ -208,14 +214,26 @@ export default function Page() {
           </p>
 
           <div className="flex gap-4 mt-4">
-            <a className="border border-neutral-700 px-4 py-2 rounded-lg hover:bg-neutral-800 transition">
-              LinkedIn
-            </a>
 
-            <a className="border border-neutral-700 px-4 py-2 rounded-lg hover:bg-neutral-800 transition">
-              Email
-            </a>
-          </div>
+  <a
+    href="https://www.linkedin.com/in/abhinav-kumar-b174a4310/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center border border-neutral-700 px-4 py-2 rounded-lg hover:bg-neutral-800 hover:shadow-lg hover:shadow-white/10 transition"
+  >
+    <FaLinkedin className="mr-2" />
+    LinkedIn
+  </a>
+
+  <a
+    href="mailto:abhinavkm048@gmail.com"
+    className="flex items-center border border-neutral-700 px-4 py-2 rounded-lg hover:bg-neutral-800 hover:shadow-lg hover:shadow-white/10 transition"
+  >
+    <FaEnvelope className="mr-2" />
+    Email
+  </a>
+</div>
+
         </motion.section>
 
       </div>

@@ -226,12 +226,14 @@ export default function Page() {
   </a>
 
   <a
-    href="mailto:abhinavkm048@gmail.com"
-    className="flex items-center border border-neutral-700 px-4 py-2 rounded-lg hover:bg-neutral-800 hover:shadow-lg hover:shadow-white/10 transition"
-  >
-    <FaEnvelope className="mr-2" />
-    Email
-  </a>
+  href="https://mail.google.com/mail/?view=cm&to=abhinavkm048@gmail.com"
+  target="_blank"
+  className="flex items-center border border-neutral-700 px-4 py-2 rounded-lg hover:bg-neutral-800 hover:shadow-lg hover:shadow-white/10 transition"
+>
+  <FaEnvelope className="mr-2" />
+  Email
+</a>
+
 </div>
 
         </motion.section>

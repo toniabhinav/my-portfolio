@@ -3,37 +3,41 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FaPython } from "react-icons/fa";
-import { FaLinkedin, FaEnvelope } from "react-icons/fa";
-
+import { FaPython, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { SiPandas, SiMysql } from "react-icons/si";
-
 import { TbFileSpreadsheet } from "react-icons/tb";
 
 export default function Page() {
   const [active, setActive] = useState("");
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const sections = ["about", "skills", "projects", "contact"];
 
     const handleScroll = () => {
       let current = "";
-
       sections.forEach((id) => {
         const el = document.getElementById(id);
         if (!el) return;
-
         const top = el.offsetTop - 120;
         if (window.scrollY >= top) current = id;
       });
-
       setActive(current);
     };
 
+    const handleMouseMove = (e: MouseEvent) => {
+      setMouse({ x: e.clientX, y: e.clientY });
+    };
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("mousemove", handleMouseMove);
+
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
   const fadeUp = {
@@ -44,45 +48,51 @@ export default function Page() {
 
   return (
     <main className="relative min-h-screen bg-gradient-to-b from-black via-neutral-950 to-black text-white flex justify-center overflow-hidden">
-    {/* BACKGROUND GLOW EFFECT */}
-<div className="pointer-events-none absolute inset-0 -z-10">
-  <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-[spin_30s_linear_infinite]
-" />
-  <div className="absolute bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-[spin_30s_linear_infinite]
-" />
-</div>
-  
+
+      {/* BACKGROUND GLOW */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-[spin_30s_linear_infinite]" />
+        <div className="absolute bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-[spin_30s_linear_infinite]" />
+      </div>
+
+      {/* CURSOR SPOTLIGHT */}
+      <motion.div
+        className="pointer-events-none fixed inset-0 -z-10"
+        animate={{
+          background: `radial-gradient(
+            600px at ${mouse.x}px ${mouse.y}px,
+            rgba(255,255,255,0.05),
+            transparent 80%
+          )`
+        }}
+        transition={{ type: "tween", ease: "linear", duration: 0.15 }}
+      />
 
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 w-full bg-black/60 backdrop-blur-lg border-b border-neutral-800 z-50">
         <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between text-sm">
           <span className="font-semibold">Abhinav</span>
 
-<div className="relative flex gap-6 text-gray-400">
+          <div className="relative flex gap-6 text-gray-400">
+            {["about","skills","projects","contact"].map((item)=>(
+              <a
+                key={item}
+                href={`#${item}`}
+                className={`relative pb-1 transition ${
+                  active===item ? "text-white" : "hover:text-white"
+                }`}
+              >
+                {item.charAt(0).toUpperCase()+item.slice(1)}
 
-  {["about","skills","projects","contact"].map((item)=>(
-    <a
-      key={item}
-      href={`#${item}`}
-      className={`relative pb-1 transition ${
-        active===item ? "text-white" : "hover:text-white"
-      }`}
-    >
-      {item.charAt(0).toUpperCase()+item.slice(1)}
-
-      {/* Animated underline */}
-      {active===item && (
-        <motion.span
-          layoutId="nav-underline"
-          className="absolute left-0 -bottom-1 h-[2px] w-full bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.6)]"
-        />
-      )}
-    </a>
-  ))}
-
-</div>
-
-
+                {active===item && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute left-0 -bottom-1 h-[2px] w-full bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+                  />
+                )}
+              </a>
+            ))}
+          </div>
         </div>
       </nav>
 
@@ -90,28 +100,14 @@ export default function Page() {
       <div className="max-w-5xl w-full p-10 mt-20 space-y-10">
 
         {/* HERO */}
-        <motion.section
-          {...fadeUp}
-          className="relative bg-neutral-900 p-10 rounded-xl border border-neutral-800 overflow-hidden"
-        >
-          {/* glow */}
+        <motion.section {...fadeUp} className="relative bg-neutral-900 p-10 rounded-xl border border-neutral-800 overflow-hidden">
           <div className="absolute -top-20 -right-20 w-72 h-72 bg-white/5 blur-3xl rounded-full" />
 
           <div className="flex flex-col md:flex-row items-center gap-8 relative">
-            <Image
-              src="/Profile.jpg"
-              alt="Profile"
-              width={110}
-              height={110}
-              className="rounded-full border border-neutral-700"
-              priority
-            />
+            <Image src="/Profile.jpg" alt="Profile" width={110} height={110} className="rounded-full border border-neutral-700" priority />
 
             <div>
-              <h1 className="text-5xl font-bold">
-                Hi, I'm Abhinav 👋
-              </h1>
-
+              <h1 className="text-5xl font-bold">Hi, I'm Abhinav 👋</h1>
               <p className="text-gray-400 mt-3 max-w-lg">
                 Aspiring Data Analyst focused on building dashboards,
                 extracting insights and solving business problems
@@ -119,17 +115,10 @@ export default function Page() {
               </p>
 
               <div className="flex gap-4 mt-6">
-                <a
-                  href="#projects"
-                  className="bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:opacity-80 transition"
-                >
+                <a href="#projects" className="bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:opacity-80 transition">
                   View Projects
                 </a>
-
-                <a
-                  href="#contact"
-                  className="border border-neutral-700 px-4 py-2 rounded-lg text-sm hover:bg-neutral-800 transition"
-                >
+                <a href="#contact" className="border border-neutral-700 px-4 py-2 rounded-lg text-sm hover:bg-neutral-800 transition">
                   Contact Me
                 </a>
               </div>
@@ -138,136 +127,79 @@ export default function Page() {
         </motion.section>
 
         {/* ABOUT */}
-        <motion.section
-          id="about"
-          {...fadeUp}
-          className="bg-neutral-900 p-6 rounded-xl border border-neutral-800 transition hover:shadow-lg hover:shadow-white/5"
-        >
+        <motion.section id="about" {...fadeUp} className="bg-neutral-900 p-6 rounded-xl border border-neutral-800 transition hover:shadow-lg hover:shadow-white/5">
           <h2 className="text-2xl font-semibold">About Me</h2>
           <p className="text-gray-400 mt-2">
-            I am passionate about data analytics and building insights
-            using Python, SQL, Excel and Power BI to solve real-world problems.
+            I am passionate about data analytics and building insights using Python, SQL, Excel and Power BI.
           </p>
         </motion.section>
 
         {/* SKILLS */}
-        <motion.section
-          id="skills"
-          {...fadeUp}
-          className="bg-neutral-900 p-6 rounded-xl border border-neutral-800"
-        >
+        <motion.section id="skills" {...fadeUp} className="bg-neutral-900 p-6 rounded-xl border border-neutral-800">
           <h2 className="text-2xl font-semibold">Skills</h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-6">
-
             {[
               {name:"Python",icon:<FaPython/>},
-              { name:"SQL", icon:<SiMysql/> },
-
+              {name:"SQL",icon:<SiMysql/>},
               {name:"Excel",icon:<TbFileSpreadsheet/>},
               {name:"Power BI",icon:<TbFileSpreadsheet/>},
-
               {name:"Pandas",icon:<SiPandas/>},
             ].map((skill)=>(
-              <div
-                key={skill.name}
-                className="bg-black border border-neutral-700 p-4 rounded-xl flex flex-col items-center gap-2
-                           hover:-translate-y-1 hover:border-white transition"
-              >
+              <div key={skill.name}
+                className="bg-black border border-neutral-700 p-4 rounded-xl flex flex-col items-center gap-2 hover:-translate-y-1 hover:border-white transition">
                 <span className="text-xl">{skill.icon}</span>
                 {skill.name}
               </div>
             ))}
-
           </div>
         </motion.section>
 
         {/* PROJECTS */}
-        <motion.section
-          id="projects"
-          {...fadeUp}
-          className="bg-neutral-900 p-6 rounded-xl border border-neutral-800"
-        >
+        <motion.section id="projects" {...fadeUp} className="bg-neutral-900 p-6 rounded-xl border border-neutral-800">
           <h2 className="text-2xl font-semibold">Projects</h2>
 
           <div className="mt-6 grid gap-5">
-
-            <div className="bg-black border border-neutral-700 p-6 rounded-xl
-                            transition duration-300 hover:scale-[1.02]
-                            hover:shadow-lg hover:shadow-white/5">
-
-              <h3 className="text-lg font-semibold">
-                Sales Data Analysis Dashboard
-              </h3>
-
+            <div className="bg-black border border-neutral-700 p-6 rounded-xl transition duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5">
+              <h3 className="text-lg font-semibold">Sales Data Analysis Dashboard</h3>
               <p className="text-gray-400 mt-2 text-sm">
-                Built interactive dashboards in Power BI and analyzed
-                sales trends using Excel datasets.
+                Built interactive dashboards in Power BI and analyzed sales trends using Excel datasets.
               </p>
-
               <div className="flex gap-4 mt-4 text-sm">
                 <a className="underline hover:text-white text-gray-400">GitHub</a>
                 <a className="underline hover:text-white text-gray-400">Live Demo</a>
               </div>
-
             </div>
-
           </div>
         </motion.section>
 
-
-
-
-
         {/* CONTACT */}
-        <motion.section
-          id="contact"
-          {...fadeUp}
-          className="bg-neutral-900 p-6 rounded-xl border border-neutral-800"
-        >
+        <motion.section id="contact" {...fadeUp} className="bg-neutral-900 p-6 rounded-xl border border-neutral-800">
           <h2 className="text-2xl font-semibold">Contact</h2>
+          <p className="text-gray-400 mt-2">Open to internships and opportunities.</p>
 
-          <p className="text-gray-400 mt-2">
-            Open to internships and data analytics opportunities.
-          </p>
+          <div className="flex gap-4 mt-4">
 
-<div className="flex gap-4 mt-4">
+            <a
+              href="https://www.linkedin.com/in/abhinav-kumar-b174a4310/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 px-5 py-2 rounded-lg border border-neutral-700 bg-neutral-900/60 backdrop-blur hover:border-white/40 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.08)] transition-all duration-300"
+            >
+              <FaLinkedin className="text-lg transition group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]" />
+              LinkedIn
+            </a>
 
-  {/* LINKEDIN */}
-  <a
-    href="https://www.linkedin.com/in/abhinav-kumar-b174a4310/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="group flex items-center gap-2 px-5 py-2 rounded-lg 
-               border border-neutral-700 
-               bg-neutral-900/60 backdrop-blur
-               hover:border-white/40
-               hover:scale-105
-               hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]
-               transition-all duration-300"
-  >
-    <FaLinkedin className="text-lg transition group-hover:text-white group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]" />
-    LinkedIn
-  </a>
+            <a
+              href="https://mail.google.com/mail/?view=cm&to=abhinavkm048@gmail.com"
+              target="_blank"
+              className="group flex items-center gap-2 px-5 py-2 rounded-lg border border-neutral-700 bg-neutral-900/60 backdrop-blur hover:border-white/40 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.08)] transition-all duration-300"
+            >
+              <FaEnvelope className="text-lg transition group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]" />
+              Email
+            </a>
 
-  {/* EMAIL */}
-  <a
-    href="https://mail.google.com/mail/?view=cm&to=abhinavkm048@gmail.com"
-    target="_blank"
-    className="group flex items-center gap-2 px-5 py-2 rounded-lg 
-               border border-neutral-700 
-               bg-neutral-900/60 backdrop-blur
-               hover:border-white/40
-               hover:scale-105
-               hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]
-               transition-all duration-300"
-  >
-    <FaEnvelope className="text-lg transition group-hover:text-white group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]" />
-    Email
-  </a>
-
-</div>
-
+          </div>
         </motion.section>
 
       </div>

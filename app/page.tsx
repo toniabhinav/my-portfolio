@@ -50,14 +50,14 @@ export default function Page() {
     <main className="relative min-h-screen bg-gradient-to-b from-black via-neutral-950 to-black text-white flex justify-center overflow-hidden">
 
       {/* BACKGROUND GLOW */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
+      <div className="pointer-events-none absolute inset-0 -z-50">
         <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-[spin_30s_linear_infinite]" />
         <div className="absolute bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-[spin_30s_linear_infinite]" />
       </div>
 
       {/* CURSOR SPOTLIGHT */}
       <motion.div
-        className="pointer-events-none fixed inset-0 -z-10"
+        className="pointer-events-none fixed inset-0 -z-50"
         animate={{
           background: `radial-gradient(
             600px at ${mouse.x}px ${mouse.y}px,

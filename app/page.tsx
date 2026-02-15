@@ -47,7 +47,7 @@ export default function Page() {
   };
 
   return (
-    <main className="relative min-h-screen bg-gradient-to-b from-black via-neutral-950 to-black text-white flex justify-center overflow-hidden">
+<main className="relative min-h-screen bg-gradient-to-b from-black via-neutral-950 to-black text-white flex justify-center">
 
       {/* BACKGROUND GLOW */}
       <div className="pointer-events-none absolute inset-0 -z-50">

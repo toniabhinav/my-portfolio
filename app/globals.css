@@ -56,3 +56,6 @@ body {
   filter: blur(40px);
   z-index: -1;
 }
+html, body {
+  overflow-x: hidden;
+}

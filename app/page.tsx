@@ -43,7 +43,15 @@ export default function Page() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-black via-neutral-950 to-black text-white flex justify-center">
+    <main className="relative min-h-screen bg-gradient-to-b from-black via-neutral-950 to-black text-white flex justify-center overflow-hidden">
+    {/* BACKGROUND GLOW EFFECT */}
+<div className="pointer-events-none absolute inset-0 -z-10">
+  <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-[spin_30s_linear_infinite]
+" />
+  <div className="absolute bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-[spin_30s_linear_infinite]
+" />
+</div>
+  
 
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 w-full bg-black/60 backdrop-blur-lg border-b border-neutral-800 z-50">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Page() {
   const [active, setActive] = useState("");
@@ -25,6 +26,8 @@ export default function Page() {
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -48,10 +51,13 @@ export default function Page() {
 
         {/* HERO */}
         <div className="bg-neutral-900 p-8 rounded-xl border border-neutral-800 flex items-center gap-6">
-          <img
+          <Image
             src="/Profile.jpg"
             alt="Profile"
-            className="w-24 h-24 rounded-full object-cover border border-neutral-700"
+            width={96}
+            height={96}
+            className="rounded-full object-cover border border-neutral-700"
+            priority
           />
 
           <div>
@@ -88,7 +94,6 @@ export default function Page() {
 
           <div className="mt-4 bg-black border border-neutral-700 p-4 rounded-lg">
             <h3 className="text-lg font-semibold">Sales Data Analysis Dashboard</h3>
-
             <p className="text-gray-400 mt-2 text-sm">
               Analyzed sales dataset using Excel and Power BI.
             </p>

@@ -50,21 +50,31 @@ export default function Page() {
         <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between text-sm">
           <span className="font-semibold">Abhinav</span>
 
-          <div className="flex gap-6 text-gray-400">
-            {["about","skills","projects","contact"].map((item)=>(
-              <a
-                key={item}
-                href={`#${item}`}
-                className={`transition ${
-                  active===item
-                  ? "text-white"
-                  : "hover:text-white"
-                }`}
-              >
-                {item.charAt(0).toUpperCase()+item.slice(1)}
-              </a>
-            ))}
-          </div>
+<div className="relative flex gap-6 text-gray-400">
+
+  {["about","skills","projects","contact"].map((item)=>(
+    <a
+      key={item}
+      href={`#${item}`}
+      className={`relative pb-1 transition ${
+        active===item ? "text-white" : "hover:text-white"
+      }`}
+    >
+      {item.charAt(0).toUpperCase()+item.slice(1)}
+
+      {/* Animated underline */}
+      {active===item && (
+        <motion.span
+          layoutId="nav-underline"
+          className="absolute left-0 -bottom-1 h-[2px] w-full bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+        />
+      )}
+    </a>
+  ))}
+
+</div>
+
+
         </div>
       </nav>
 
@@ -213,26 +223,40 @@ export default function Page() {
             Open to internships and data analytics opportunities.
           </p>
 
-          <div className="flex gap-4 mt-4">
+<div className="flex gap-4 mt-4">
 
+  {/* LINKEDIN */}
   <a
     href="https://www.linkedin.com/in/abhinav-kumar-b174a4310/"
     target="_blank"
     rel="noopener noreferrer"
-    className="flex items-center border border-neutral-700 px-4 py-2 rounded-lg hover:bg-neutral-800 hover:shadow-lg hover:shadow-white/10 transition"
+    className="group flex items-center gap-2 px-5 py-2 rounded-lg 
+               border border-neutral-700 
+               bg-neutral-900/60 backdrop-blur
+               hover:border-white/40
+               hover:scale-105
+               hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]
+               transition-all duration-300"
   >
-    <FaLinkedin className="mr-2" />
+    <FaLinkedin className="text-lg transition group-hover:text-white group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]" />
     LinkedIn
   </a>
 
+  {/* EMAIL */}
   <a
-  href="https://mail.google.com/mail/?view=cm&to=abhinavkm048@gmail.com"
-  target="_blank"
-  className="flex items-center border border-neutral-700 px-4 py-2 rounded-lg hover:bg-neutral-800 hover:shadow-lg hover:shadow-white/10 transition"
->
-  <FaEnvelope className="mr-2" />
-  Email
-</a>
+    href="https://mail.google.com/mail/?view=cm&to=abhinavkm048@gmail.com"
+    target="_blank"
+    className="group flex items-center gap-2 px-5 py-2 rounded-lg 
+               border border-neutral-700 
+               bg-neutral-900/60 backdrop-blur
+               hover:border-white/40
+               hover:scale-105
+               hover:shadow-[0_0_20px_rgba(255,255,255,0.08)]
+               transition-all duration-300"
+  >
+    <FaEnvelope className="text-lg transition group-hover:text-white group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]" />
+    Email
+  </a>
 
 </div>
 

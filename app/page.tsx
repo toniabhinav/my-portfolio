@@ -57,7 +57,8 @@ export default function Page() {
 
       {/* CURSOR SPOTLIGHT */}
       <motion.div
-  className="pointer-events-none fixed top-0 left-0 w-full h-full -z-50"
+  className="pointer-events-none fixed inset-0 -z-50"
+
 
         animate={{
           background: `radial-gradient(
@@ -98,7 +99,8 @@ export default function Page() {
       </nav>
 
       {/* CONTENT */}
-      <div className="max-w-5xl w-full p-10 mt-20 space-y-10">
+      <div className="max-w-5xl w-full px-6 py-10 mt-20 space-y-10">
+
 
         {/* HERO */}
         <motion.section {...fadeUp} className="relative bg-neutral-900 p-10 rounded-xl border border-neutral-800 overflow-hidden">

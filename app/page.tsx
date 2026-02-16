@@ -307,6 +307,17 @@ className="relative py-12 pb-10 border-b border-white/10 shadow-[0_1px_0_rgba(25
 (EDA), data transformation, KPI analysis, and visualization to support data-driven business decisions.
 Experienced in working with structured datasets and communicating actionable insights.
           </p>
+          {/* ADD THIS BLOCK BELOW */}
+<div className="mt-6">
+  <p className="text-sm text-gray-400 mb-2">Skills</p>
+
+  <div className="flex items-center gap-4 text-xl text-gray-400">
+    <FaPython className="hover:text-white hover:scale-110 transition" />
+    <SiMysql className="hover:text-white hover:scale-110 transition" />
+    <SiPandas className="hover:text-white hover:scale-110 transition" />
+    <TbFileSpreadsheet className="hover:text-white hover:scale-110 transition" />
+  </div>
+</div>
         </motion.section>
 
         {/* SKILLS */}

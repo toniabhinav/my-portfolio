@@ -47,12 +47,13 @@ export default function Page() {
   };
 
   return (
-<main className="relative w-full bg-gradient-to-b from-black via-neutral-950 to-black text-white flex justify-center overflow-x-hidden">
+<main className="relative w-full min-h-screen bg-gradient-to-b from-black via-neutral-950 to-black text-white flex justify-center overflow-x-hidden snap-y snap-mandatory">
 
       {/* BACKGROUND GLOW */}
-      <div className="pointer-events-none absolute inset-0 -z-50">
-        <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-[spin_30s_linear_infinite]" />
-        <div className="absolute bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-[spin_30s_linear_infinite]" />
+      <div className="pointer-events-none fixed inset-0 overflow-hidden -z-50">
+
+        <div className="absolute top-[-120px] left-[-120px] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-[spin_30s_linear_infinite]" />
+        <div className="absolute bottom-[-120px] right-[-120px] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] animate-[spin_30s_linear_infinite]" />
       </div>
 
       {/* CURSOR SPOTLIGHT */}
@@ -103,7 +104,7 @@ export default function Page() {
 
 
         {/* HERO */}
-        <motion.section {...fadeUp} className="relative bg-neutral-900 p-10 rounded-xl border border-neutral-800 overflow-hidden">
+<motion.section {...fadeUp} className="snap-start relative bg-neutral-900 p-10 rounded-xl border border-neutral-800 overflow-hidden">
           <div className="absolute -top-20 -right-20 w-72 h-72 bg-white/5 blur-3xl rounded-full" />
 
           <div className="flex flex-col md:flex-row items-center gap-8 relative">
@@ -130,7 +131,7 @@ export default function Page() {
         </motion.section>
 
         {/* ABOUT */}
-        <motion.section id="about" {...fadeUp} className="bg-neutral-900 p-6 rounded-xl border border-neutral-800 transition hover:shadow-lg hover:shadow-white/5">
+        <motion.section id="about" {...fadeUp} className="snap-start bg-neutral-900 p-6 rounded-xl border border-neutral-800 transition hover:shadow-lg hover:shadow-white/5">
           <h2 className="text-2xl font-semibold">About Me</h2>
           <p className="text-gray-400 mt-2">
             I am passionate about data analytics and building insights using Python, SQL, Excel and Power BI.
@@ -138,7 +139,7 @@ export default function Page() {
         </motion.section>
 
         {/* SKILLS */}
-        <motion.section id="skills" {...fadeUp} className="bg-neutral-900 p-6 rounded-xl border border-neutral-800">
+        <motion.section id="skills" {...fadeUp} className="snap-start bg-neutral-900 p-6 rounded-xl border border-neutral-800">
           <h2 className="text-2xl font-semibold">Skills</h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-6">
@@ -159,25 +160,83 @@ export default function Page() {
         </motion.section>
 
         {/* PROJECTS */}
-        <motion.section id="projects" {...fadeUp} className="bg-neutral-900 p-6 rounded-xl border border-neutral-800">
+        <motion.section id="projects" {...fadeUp} className="snap-start bg-neutral-900 p-6 rounded-xl border border-neutral-800">
           <h2 className="text-2xl font-semibold">Projects</h2>
 
           <div className="mt-6 grid gap-5">
+
+
             <div className="bg-black border border-neutral-700 p-6 rounded-xl transition duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5">
               <h3 className="text-lg font-semibold">Sales Data Analysis Dashboard</h3>
               <p className="text-gray-400 mt-2 text-sm">
                 Built interactive dashboards in Power BI and analyzed sales trends using Excel datasets.
               </p>
+              <p className="text-gray-400 mt-2 text-sm">
+              Excel | Data Analysis | Pivot Tables | Charts | Data Cleaning | Business Insights
+              </p>
               <div className="flex gap-4 mt-4 text-sm">
-                <a className="underline hover:text-white text-gray-400">GitHub</a>
+                <a
+              href="https://github.com/toniabhinav/Sales-Market-Insights-Analysis-using-Excel"
+              target="_blank"
+              className="underline hover:text-white text-gray-400"
+              >
+              GitHub
+              </a>
                 <a className="underline hover:text-white text-gray-400">Live Demo</a>
               </div>
             </div>
+
+
+
+            <div className="bg-black border border-neutral-700 p-6 rounded-xl transition duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5">
+              <h3 className="text-lg font-semibold">Blinkit Grocery Sales Dashboard</h3>
+              <p className="text-gray-400 mt-2 text-sm">
+                Power BI dashboard analyzing grocery sales trends and KPIs.
+              </p>
+              <p className="text-gray-400 mt-2 text-sm">
+              Power BI | Data Visualization | Dashboard Design | DAX | Data Cleaning | Business Insights
+              </p>
+              <div className="flex gap-4 mt-4 text-sm">
+              <a
+              href="https://github.com/toniabhinav/Blinkit-Grocery-Sales-Analytics-Dashboard-Power-BI-"
+              target="_blank"
+              className="underline hover:text-white text-gray-400"
+              >
+              GitHub
+              </a>
+
+                <a className="underline hover:text-white text-gray-400">Live Demo</a>
+              </div>
+            </div>
+
+
+            <div className="bg-black border border-neutral-700 p-6 rounded-xl transition duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5">
+              <h3 className="text-lg font-semibold">Sales analysis for Online Bookstore SQL</h3>
+              <p className="text-gray-400 mt-2 text-sm">
+                Analyzed online bookstore sales data using SQL queries including joins, group by, and aggregations to identify top-selling books, customer trends, and revenue insights.
+              </p>
+              <p className="text-gray-400 mt-2 text-sm">
+              SQL | Data Analysis | Joins | Aggregation
+              </p>
+              <div className="flex gap-4 mt-4 text-sm">
+                <a
+              href="https://github.com/toniabhinav/Sales-analysis-for-Online-Bookstore-SQL"
+              target="_blank"
+              className="underline hover:text-white text-gray-400"
+              >
+              GitHub
+              </a>
+                <a className="underline hover:text-white text-gray-400">Live Demo</a>
+              </div>
+            </div>
+
+
+
           </div>
         </motion.section>
 
         {/* CONTACT */}
-        <motion.section id="contact" {...fadeUp} className="bg-neutral-900 p-6 rounded-xl border border-neutral-800">
+        <motion.section id="contact" {...fadeUp} className="snap-start bg-neutral-900 p-6 rounded-xl border border-neutral-800">
           <h2 className="text-2xl font-semibold">Contact</h2>
           <p className="text-gray-400 mt-2">Open to internships and opportunities.</p>
 
@@ -205,7 +264,19 @@ export default function Page() {
           </div>
         </motion.section>
 
-      </div>
+{/* FOOTER */}
+<footer className="text-center text-sm text-gray-400 py-10">
+  <p>
+    Design & Developed by <span className="text-white font-medium">Abhinav Kumar</span>
+  </p>
+  <p className="mt-1 text-xs text-gray-500">
+    © {new Date().getFullYear()} All rights reserved
+  </p>
+</footer>
+
+</div>   {/* ← this closes the max-w-5xl container */}
+
+
     </main>
   );
 }

@@ -63,3 +63,14 @@ body {
 html, body {
   overflow-x: hidden;
 }
+html {
+  scroll-behavior: smooth;
+}
+section {
+  scroll-margin-top: 90px;
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}

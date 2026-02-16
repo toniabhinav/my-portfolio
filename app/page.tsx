@@ -3,13 +3,16 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FaPython, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaPython, FaLinkedin, FaEnvelope, FaGithub, FaInstagram, FaArrowUp } from "react-icons/fa";
 import { SiPandas, SiMysql } from "react-icons/si";
 import { TbFileSpreadsheet } from "react-icons/tb";
 
 export default function Page() {
   const [active, setActive] = useState("");
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [dark, setDark] = useState(true);
+  const [showTop, setShowTop] = useState(false);
+
 
   useEffect(() => {
     const sections = ["about", "skills", "projects", "contact"];
@@ -23,6 +26,7 @@ export default function Page() {
         if (window.scrollY >= top) current = id;
       });
       setActive(current);
+      setShowTop(window.scrollY > 150);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -47,7 +51,9 @@ export default function Page() {
   };
 
   return (
-<main className="relative w-full min-h-screen bg-gradient-to-b from-black via-neutral-950 to-black text-white flex justify-center overflow-x-hidden snap-y snap-mandatory">
+<main className={`relative w-full flex justify-center overflow-x-hidden
+  ${dark ? "bg-gradient-to-b from-black via-neutral-950 to-black text-white"
+         : "bg-white text-black"}`}>
 
       {/* BACKGROUND GLOW */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden -z-50">
@@ -72,9 +78,12 @@ export default function Page() {
       />
 
       {/* NAVBAR */}
-      <nav className="fixed top-0 left-0 w-full bg-black/60 backdrop-blur-lg border-b border-neutral-800 z-50">
+<nav className={`fixed top-0 left-0 w-full z-50 backdrop-blur-lg border-b
+  ${dark ? "bg-black/60 border-neutral-800"
+         : "bg-white/70 border-gray-200"}`}>
         <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between text-sm">
-          <span className="font-semibold">Abhinav</span>
+          <span className="font-semibold tracking-tight">Abhinav</span>
+
 
           <div className="relative flex gap-6 text-gray-400">
             {["about","skills","projects","contact"].map((item)=>(
@@ -96,50 +105,220 @@ export default function Page() {
               </a>
             ))}
           </div>
+          {/* RIGHT SIDE BUTTONS */}
+<div className="flex items-center gap-3">
+  {/* Moon Button */}
+  <button
+  onClick={() => setDark(!dark)}
+  className="p-3 rounded-xl border border-neutral-700 bg-neutral-900/60 backdrop-blur hover:border-white/40 transition"
+>
+  {dark ? "🌙" : "☀️"}
+</button>
+
+</div>
+
         </div>
       </nav>
 
       {/* CONTENT */}
-      <div className="max-w-5xl w-full px-6 py-10 mt-20 space-y-10">
+      <div className="max-w-5xl w-full px-6 py-10 mt-24 space-y-10">
 
 
         {/* HERO */}
-<motion.section {...fadeUp} className="snap-start relative bg-neutral-900 p-10 rounded-xl border border-neutral-800 overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-72 h-72 bg-white/5 blur-3xl rounded-full" />
+{/* HERO */}
+<motion.section
+  {...fadeUp}
+className="relative py-12 pb-10 border-b border-white/10 shadow-[0_1px_0_rgba(255,255,255,0.05)] overflow-visible backdrop-blur-sm"
+>
+{/* STRIPED BACKGROUND */}
+<div className="pointer-events-none absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,white_1px,transparent_1px)] bg-[size:40px_100%]" />
+{/* NOISE TEXTURE */}
+<div className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
 
-          <div className="flex flex-col md:flex-row items-center gap-8 relative">
-            <Image src="/Profile.jpg" alt="Profile" width={110} height={110} className="rounded-full border border-neutral-700" priority />
+    {/* LEFT SIDE */}
+<div className="flex items-center gap-6 md:gap-8">
 
-            <div>
-              <h1 className="text-5xl font-bold">Hi, I'm Abhinav 👋</h1>
-              <p className="text-gray-400 mt-3 max-w-lg">
-                Aspiring Data Analyst focused on building dashboards,
-                extracting insights and solving business problems
-                using Python, SQL, Excel, Power BI and Pandas.
-              </p>
+      {/* PROFILE IMAGE */}
+      {/* PROFILE IMAGE — HOVER GLOW */}
+<div className="relative group -mb-6 ml-3">
 
-              <div className="flex gap-4 mt-6">
-                <a href="#projects" className="bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:opacity-80 transition">
-                  View Projects
-                </a>
-                <a href="#contact" className="border border-neutral-700 px-4 py-2 rounded-lg text-sm hover:bg-neutral-800 transition">
-                  Contact Me
-                </a>
-              </div>
-            </div>
-          </div>
-        </motion.section>
+  {/* Glow layer */}
+  <span className="absolute inset-0 rounded-full blur-2xl opacity-0 
+  group-hover:opacity-60 transition duration-300 bg-white/30"></span>
+
+  {/* Image */}
+  {/* PROFILE IMAGE — AESTHETIC HOVER GLOW */}
+<div className="relative group -mb-6 ml-3">
+
+  {/* Aesthetic gradient glow */}
+  <span className="
+    absolute -inset-2 rounded-full blur-xl opacity-0
+    group-hover:opacity-100 transition duration-500
+    bg-gradient-to-tr from-blue-500/40 via-purple-500/40 to-cyan-400/40
+  "></span>
+
+  {/* Image */}
+  <Image
+    src="/Profile.jpg"
+    alt="Profile"
+    width={180}
+    height={180}
+    className="
+      relative rounded-full border-2 border-neutral-700
+      object-cover shadow-xl
+      transition duration-500
+      group-hover:scale-[1.03]
+    "
+    priority
+  />
+</div>
+
+</div>
+
+
+      <div>
+        <div className="flex items-center gap-2">
+<h1 className="text-4xl md:text-5xl font-semibold tracking-tight relative">
+<span className="absolute -inset-3 blur-2xl opacity-20 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 -z-10 rounded-lg"></span>
+
+            Abhinav Kumar
+          </h1>
+          <span className="text-blue-400">✔️</span>
+        </div>
+
+        {/* TECH STACK LINE */}
+<p className="mt-4 text-sm text-gray-300 leading-relaxed max-w-xl">
+  My main <span className="font-semibold text-white">Tech Stack</span> is
+
+<span className="ml-2 inline-flex flex-wrap items-center gap-2 align-middle">
+
+    <span className="px-3 py-1 rounded-md bg-neutral-900/70 backdrop-blur border border-white/5 hover:border-white/30 transition
+ text-xs">Python</span>
+
+    <span className="px-3 py-1 rounded-md bg-neutral-900/70 backdrop-blur border border-white/5 hover:border-white/30 transition
+ text-xs">SQL</span>
+
+    <span className="px-3 py-1 rounded-md bg-neutral-900/70 backdrop-blur border border-white/5 hover:border-white/30 transition
+ text-xs">Excel</span>
+
+    <span className="px-3 py-1 rounded-md bg-neutral-900/70 backdrop-blur border border-white/5 hover:border-white/30 transition
+ text-xs">Power BI</span>
+
+    <span className="px-3 py-1 rounded-md bg-neutral-900/70 backdrop-blur border border-white/5 hover:border-white/30 transition
+ text-xs">Tableau</span>
+
+    <span className="px-3 py-1 rounded-md bg-neutral-900/70 backdrop-blur border border-white/5 hover:border-white/30 transition
+ text-xs">Pandas</span>
+
+  </span>
+</p>
+        {/* ACTION BUTTONS */}
+<div className="flex items-center gap-3 mt-4">
+
+  {/* Resume Button */}
+  <a
+    href="/Resume.pdf"
+    target="_blank"
+    className="px-5 py-2 rounded-lg border border-neutral-700 bg-neutral-900/60 backdrop-blur hover:border-white/40 hover:scale-105 transition text-sm"
+  >
+    📄 Resume / CV
+  </a>
+
+</div>
+{/* SOCIAL ICONS */}
+<div className="flex items-center gap-4 mt-4 text-gray-400">
+
+  <a
+    href="https://github.com/toniabhinav"
+    target="_blank"
+    className="hover:text-white transition hover:scale-110"
+  >
+    <FaGithub size={18} />
+  </a>
+
+  <a
+    href="https://www.linkedin.com/in/abhinav-kumar-b174a4310/"
+    target="_blank"
+    className="hover:text-white transition hover:scale-110"
+  >
+    <FaLinkedin size={18} />
+  </a>
+
+  <a
+    href="https://mail.google.com/mail/?view=cm&to=abhinavkm048@gmail.com"
+    target="_blank"
+    className="hover:text-white transition hover:scale-110"
+  >
+    <FaEnvelope size={18} />
+  </a>
+  <a
+  href="https://www.instagram.com/toni_abhinav/"
+  target="_blank"
+  className="hover:text-white transition hover:scale-110"
+>
+  <FaInstagram size={18} />
+</a>
+
+</div>
+
+
+      </div>
+    </div>
+
+    {/* RIGHT SIDE BUTTONS */}
+    <div className="flex items-center gap-3">
+
+<div className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-700 bg-neutral-900/60 whitespace-nowrap">
+        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+        <span className="text-sm text-gray-300">Let's Work</span>
+      </div>
+
+      <a
+  href="#contact"
+  className="flex items-center gap-2 px-6 py-2 rounded-full bg-neutral-800 hover:bg-neutral-700 transition whitespace-nowrap"
+>
+
+        <span className="w-3 h-3 bg-orange-500 rounded-full"></span>
+        Book a free call
+      </a>
+
+    </div>
+  </div>
+</motion.section>
+
+
+
 
         {/* ABOUT */}
-        <motion.section id="about" {...fadeUp} className="snap-start bg-neutral-900 p-6 rounded-xl border border-neutral-800 transition hover:shadow-lg hover:shadow-white/5">
+<motion.section
+  id="about"
+  {...fadeUp}
+
+  className={`snap-start relative p-10 rounded-xl border overflow-hidden ${
+    dark
+      ? "bg-neutral-900 border-neutral-800 text-white"
+      : "bg-white border-gray-200 text-black shadow-sm"
+  }`}
+>
           <h2 className="text-2xl font-semibold">About Me</h2>
           <p className="text-gray-400 mt-2">
-            I am passionate about data analytics and building insights using Python, SQL, Excel and Power BI.
+            Entry-level Data Analyst with hands-on experience in data analysis, reporting, and dashboard development using Python, SQL, Excel, and Power BI. Strong foundation in exploratory data analysis
+(EDA), data transformation, KPI analysis, and visualization to support data-driven business decisions.
+Experienced in working with structured datasets and communicating actionable insights.
           </p>
         </motion.section>
 
         {/* SKILLS */}
-        <motion.section id="skills" {...fadeUp} className="snap-start bg-neutral-900 p-6 rounded-xl border border-neutral-800">
+<motion.section
+id="skills"
+  {...fadeUp}
+  className={`snap-start relative p-10 rounded-xl border overflow-hidden ${
+    dark
+      ? "bg-neutral-900 border-neutral-800 text-white"
+      : "bg-white border-gray-200 text-black shadow-sm"
+  }`}
+>
           <h2 className="text-2xl font-semibold">Skills</h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-6">
@@ -151,7 +330,12 @@ export default function Page() {
               {name:"Pandas",icon:<SiPandas/>},
             ].map((skill)=>(
               <div key={skill.name}
-                className="bg-black border border-neutral-700 p-4 rounded-xl flex flex-col items-center gap-2 hover:-translate-y-1 hover:border-white transition">
+                className={`border p-4 rounded-xl flex flex-col items-center gap-2 hover:-translate-y-1 transition ${
+  dark
+    ? "bg-black border-neutral-700 text-white hover:border-white"
+    : "bg-gray-50 border-gray-200 text-black hover:border-gray-400"
+}`}
+>
                 <span className="text-xl">{skill.icon}</span>
                 {skill.name}
               </div>
@@ -160,7 +344,15 @@ export default function Page() {
         </motion.section>
 
         {/* PROJECTS */}
-        <motion.section id="projects" {...fadeUp} className="snap-start bg-neutral-900 p-6 rounded-xl border border-neutral-800">
+<motion.section
+id="projects"
+  {...fadeUp}
+  className={`snap-start relative p-10 rounded-xl border overflow-hidden ${
+    dark
+      ? "bg-neutral-900 border-neutral-800 text-white"
+      : "bg-white border-gray-200 text-black shadow-sm"
+  }`}
+>
           <h2 className="text-2xl font-semibold">Projects</h2>
 
           <div className="mt-6 grid gap-5">
@@ -236,7 +428,15 @@ export default function Page() {
         </motion.section>
 
         {/* CONTACT */}
-        <motion.section id="contact" {...fadeUp} className="snap-start bg-neutral-900 p-6 rounded-xl border border-neutral-800">
+<motion.section
+id="contact"
+  {...fadeUp}
+  className={`snap-start relative p-10 rounded-xl border overflow-hidden ${
+    dark
+      ? "bg-neutral-900 border-neutral-800 text-white"
+      : "bg-white border-gray-200 text-black shadow-sm"
+  }`}
+>
           <h2 className="text-2xl font-semibold">Contact</h2>
           <p className="text-gray-400 mt-2">Open to internships and opportunities.</p>
 
@@ -276,6 +476,15 @@ export default function Page() {
 
 </div>   {/* ← this closes the max-w-5xl container */}
 
+{/* BACK TO TOP BUTTON */}
+{showTop && (
+  <button
+    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    className="fixed bottom-6 right-6 z-50 p-3 rounded-full border border-neutral-700 bg-neutral-900/80 backdrop-blur hover:scale-110 hover:border-white/40 transition shadow-lg"
+  >
+    <FaArrowUp size={14} />
+  </button>
+)}
 
     </main>
   );
